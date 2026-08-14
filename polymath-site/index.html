@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ankush N R — Polyinnovae AI Hackathon</title>
+<meta name="description" content="Ankush N R — Polyinnovae AI Hackathon application" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,560;9..144,680&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12141a;
+    --ink-soft:#1b1e27;
+    --paper:#f5f2ec;
+    --paper-dim:#c9c6c0;
+    --amber:#e8a33d;
+    --wire:#3a3f4d;
+    --ok:#7fb37a;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'Inter',system-ui,sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--amber);color:var(--ink);}
+  a{color:var(--amber);}
+
+  .wrap{max-width:880px;margin:0 auto;padding:0 28px;}
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    position:relative;
+    padding:96px 0 72px;
+    overflow:hidden;
+    border-bottom:1px solid var(--wire);
+  }
+  .constellation{
+    position:absolute;
+    top:-40px; right:-120px;
+    width:520px; height:520px;
+    opacity:0.55;
+    pointer-events:none;
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--amber);
+    margin-bottom:22px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{
+    content:'';
+    width:7px;height:7px;border-radius:50%;
+    background:var(--amber);
+    box-shadow:0 0 0 4px rgba(232,163,61,0.18);
+  }
+  h1{
+    font-family:'Fraunces',serif;
+    font-weight:560;
+    font-size:clamp(40px,7vw,68px);
+    line-height:1.02;
+    margin:0 0 18px;
+    letter-spacing:-0.01em;
+    max-width:11ch;
+  }
+  h1 em{
+    font-style:italic;
+    font-weight:400;
+    color:var(--amber);
+  }
+  .tagline{
+    font-size:18px;
+    color:var(--paper-dim);
+    max-width:52ch;
+    margin:0 0 34px;
+  }
+  .domain-row{
+    display:flex; flex-wrap:wrap; gap:10px;
+  }
+  .domain-chip{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;
+    padding:7px 13px;
+    border:1px solid var(--wire);
+    border-radius:100px;
+    color:var(--paper-dim);
+  }
+  .domain-chip b{color:var(--paper);font-weight:500;}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:56px 0;border-bottom:1px solid var(--wire);}
+  section:last-of-type{border-bottom:none;}
+  .sec-label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--amber);
+    margin:0 0 8px;
+  }
+  .sec-title{
+    font-family:'Fraunces',serif;
+    font-weight:560;
+    font-size:28px;
+    margin:0 0 28px;
+  }
+
+  /* ---------- PHOTO ---------- */
+  .photo-block{
+    display:flex; gap:28px; align-items:flex-start; flex-wrap:wrap;
+  }
+  .photo-frame{
+    width:180px; height:180px;
+    border-radius:14px;
+    border:1px solid var(--wire);
+    background:var(--ink-soft);
+    overflow:hidden;
+    flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .photo-frame img{width:100%;height:100%;object-fit:cover;display:block;}
+  .photo-placeholder{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--paper-dim);
+    text-align:center;
+    padding:16px;
+    line-height:1.6;
+  }
+  .id-lines{flex:1; min-width:220px;}
+  .id-name{font-family:'Fraunces',serif;font-size:24px;margin:0 0 4px;}
+  .id-role{color:var(--paper-dim);font-size:15px;margin:0 0 14px;}
+  .id-meta{
+    display:flex; flex-direction:column; gap:6px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    color:var(--paper-dim);
+  }
+  .id-meta a{color:var(--paper-dim);text-decoration:none;border-bottom:1px dotted var(--wire);}
+  .id-meta a:hover{color:var(--amber);border-color:var(--amber);}
+
+  /* ---------- VIDEO ---------- */
+  .video-frame{
+    width:100%;
+    aspect-ratio:16/9;
+    border-radius:14px;
+    border:1px solid var(--wire);
+    background:var(--ink-soft);
+    display:flex; align-items:center; justify-content:center;
+    overflow:hidden;
+  }
+  .video-frame video{width:100%;height:100%;object-fit:cover;display:block;}
+  .video-placeholder{
+    text-align:center;
+    font-family:'JetBrains Mono',monospace;
+    color:var(--paper-dim);
+    font-size:13px;
+    line-height:1.7;
+    padding:20px;
+  }
+  .video-placeholder .big{
+    font-size:34px; margin-bottom:8px; color:var(--amber);
+  }
+
+  /* ---------- POLYMATH ANSWER ---------- */
+  .answer-card{
+    border:1px solid var(--wire);
+    border-radius:14px;
+    padding:28px 30px;
+    background:var(--ink-soft);
+    position:relative;
+  }
+  .answer-card .quote-mark{
+    font-family:'Fraunces',serif;
+    font-size:64px;
+    color:var(--amber);
+    position:absolute;
+    top:-6px; left:20px;
+    opacity:0.35;
+    line-height:1;
+  }
+  .answer-text{
+    font-size:16.5px;
+    line-height:1.75;
+    color:var(--paper);
+    position:relative;
+    z-index:1;
+  }
+  .word-count{
+    margin-top:16px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px;
+    color:var(--paper-dim);
+  }
+
+  /* ---------- RESUME ---------- */
+  .resume-block{
+    display:flex; justify-content:space-between; align-items:center;
+    border:1px solid var(--wire);
+    border-radius:14px;
+    padding:20px 24px;
+    background:var(--ink-soft);
+    flex-wrap:wrap; gap:16px;
+  }
+  .resume-left{display:flex; align-items:center; gap:16px;}
+  .resume-icon{
+    width:44px;height:44px;border-radius:10px;
+    background:rgba(232,163,61,0.12);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--amber); font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:600;
+  }
+  .resume-name{font-size:15px; font-weight:500;}
+  .resume-sub{font-size:13px; color:var(--paper-dim);}
+  .btn{
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    padding:11px 20px;
+    border-radius:100px;
+    background:var(--amber);
+    color:var(--ink);
+    text-decoration:none;
+    font-weight:600;
+    display:inline-block;
+    transition:opacity .15s;
+  }
+  .btn:hover{opacity:0.85;}
+
+  /* ---------- SNAPSHOT / PROOF ---------- */
+  .proof-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:16px;
+  }
+  .proof-card{
+    border:1px solid var(--wire);
+    border-radius:12px;
+    padding:20px 22px;
+  }
+  .proof-tag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--amber);
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    margin-bottom:8px;
+  }
+  .proof-title{font-weight:600; font-size:15px; margin-bottom:6px;}
+  .proof-desc{font-size:13.5px; color:var(--paper-dim); line-height:1.55;}
+
+  footer{
+    padding:36px 0 60px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--paper-dim);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  }
+
+  @media (max-width:640px){
+    header.hero{padding:64px 0 48px;}
+    .constellation{display:none;}
+    section{padding:40px 0;}
+  }
+
+  /* checklist banner - remove before final deploy */
+  .devnote{
+    background:#2a1f14;
+    border:1px dashed var(--amber);
+    color:#f0d9ad;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;
+    padding:14px 18px;
+    border-radius:10px;
+    margin-bottom:8px;
+    line-height:1.6;
+  }
+  .devnote b{color:var(--amber);}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  
+
+  <header class="hero">
+    <svg class="constellation" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+      <line x1="200" y1="200" x2="80" y2="90" stroke="#e8a33d" stroke-width="1" opacity="0.5"/>
+      <line x1="200" y1="200" x2="330" y2="70" stroke="#e8a33d" stroke-width="1" opacity="0.5"/>
+      <line x1="200" y1="200" x2="340" y2="260" stroke="#e8a33d" stroke-width="1" opacity="0.5"/>
+      <line x1="80" y1="90" x2="330" y2="70" stroke="#3a3f4d" stroke-width="1" opacity="0.6"/>
+      <line x1="330" y1="70" x2="340" y2="260" stroke="#3a3f4d" stroke-width="1" opacity="0.6"/>
+      <line x1="80" y1="90" x2="340" y2="260" stroke="#3a3f4d" stroke-width="1" opacity="0.6"/>
+      <circle cx="200" cy="200" r="7" fill="#e8a33d"/>
+      <circle cx="80" cy="90" r="5" fill="#f5f2ec"/>
+      <circle cx="330" cy="70" r="5" fill="#f5f2ec"/>
+      <circle cx="340" cy="260" r="5" fill="#f5f2ec"/>
+      <text x="90" y="78" fill="#c9c6c0" font-size="11" font-family="JetBrains Mono, monospace">CLOUD</text>
+      <text x="336" y="58" fill="#c9c6c0" font-size="11" font-family="JetBrains Mono, monospace">NETWORKING</text>
+      <text x="346" y="280" fill="#c9c6c0" font-size="11" font-family="JetBrains Mono, monospace">AI</text>
+    </svg>
+    <p class="eyebrow">Polyinnovae AI × Eonexea AI — Hackathon Application</p>
+    <h1>One problem.<br/>Every <em>angle.</em></h1>
+    <p class="tagline">Ankush N R — final-year Information Science &amp; Engineering student connecting cloud infrastructure, networking, and applied AI into one working pipeline, not three separate tracks.</p>
+    <div class="domain-row">
+      <span class="domain-chip"><b>Cloud</b> · AWS, GCP, Docker</span>
+      <span class="domain-chip"><b>Networking</b> · TCP/IP, VLANs, OVS</span>
+      <span class="domain-chip"><b>AI</b> · YOLO, VLMs, fine-tuning</span>
+      <span class="domain-chip"><b>Certified</b> · Nutanix NCA 6</span>
+    </div>
+  </header>
+
+  <section id="photo">
+    <p class="sec-label">01 — Identity</p>
+    <h2 class="sec-title">A clear photo of me</h2>
+    <div class="photo-block">
+      <div class="photo-frame">
+        <img src="photo.jpeg" alt="Ankush N R" class="photo-placeholder">
+      </div>
+      <div class="id-lines">
+        <p class="id-name">Ankush N R</p>
+        <p class="id-role">Information Science &amp; Engineering · NMIT Bengaluru · 2023–2027</p>
+        <div class="id-meta">
+          <span>+91 93537 17778</span>
+          <a href="mailto:ankushnrofficial@gmail.com">ankushnrofficial@gmail.com</a>
+          <a href="https://linkedin.com/in/ankushnr" target="_blank" rel="noopener">linkedin.com/in/ankushnr</a>
+          <a href="https://github.com/ankushnr" target="_blank" rel="noopener">github.com/ankushnr</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="video">
+    <p class="sec-label">02 — Intro</p>
+    <h2 class="sec-title">1-minute intro video</h2>
+    <div class="video-frame">
+      <!-- Replace with: <video controls src="intro.mp4"></video> -->
+      <div class="video-placeholder">
+        <div class="big">▶</div>
+        DROP <b>intro.mp4</b> HERE<br/>
+        60 seconds · talk straight to camera · who you are + why this fellowship
+      </div>
+    </div>
+  </section>
+
+  <section id="polymath">
+    <p class="sec-label">03 — The Answer</p>
+    <h2 class="sec-title">What makes you want to build like a polymath?</h2>
+    <div class="answer-card">
+      <div class="quote-mark">&ldquo;</div>
+      <p class="answer-text">
+        I don't experience cloud, networking, and AI as separate subjects — I experience them as one recurring problem seen from different rooms. Debugging a gateway routing failure with <code>tcpdump</code> taught me the same instinct I now use chaining YOLOv8 and a vision-language model into one traffic-analysis pipeline: don't trust the abstraction, go find where the system actually breaks. My Nutanix certification gave me the infrastructure floor; my networking project gave me the systems-thinking; my AI work gave me the judgment to know when a model is the right tool and when it's noise. A polymath isn't someone who knows nine things shallowly — it's someone who's stood close enough to a handful of systems to see the one pattern that repeats across all of them. That's the angle I bring to any problem you hand me.
+      </p>
+      <p class="word-count">~130 words — trim/personalize to exactly 100 before submitting.</p>
+    </div>
+  </section>
+
+  <section id="resume">
+    <p class="sec-label">04 — Resume</p>
+    <h2 class="sec-title">Full resume</h2>
+    <div class="resume-block">
+      <div class="resume-left">
+        <div class="resume-icon">PDF</div>
+        <div>
+          <div class="resume-name">Ankush_N_R_Resume.pdf</div>
+          <div class="resume-sub">Education, projects, certifications, achievements</div>
+        </div>
+      </div>
+      <a class="btn" href="resume.pdf" target="_blank" rel="noopener">View / Download →</a>
+    </div>
+  </section>
+
+  <section id="proof">
+    <p class="sec-label">05 — Recent Work</p>
+    <h2 class="sec-title">Evidence, not adjectives</h2>
+    <div class="proof-grid">
+      <div class="proof-card">
+        <div class="proof-tag">AI Systems</div>
+        <div class="proof-title">INDRA — Traffic Analysis Pipeline</div>
+        <div class="proof-desc">YOLOv8 + Qwen3-VL-4B chained for plate detection, tracking, OCR &amp; scene reasoning. &gt;70% plate recall on real Bengaluru/Delhi dashcam clips.</div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-tag">Networking</div>
+        <div class="proof-title">Multi-Tenant Network Isolation</div>
+        <div class="proof-desc">Open vSwitch + Docker VLAN segmentation, hard L2 boundary across 3 tenants, live SDN dashboard querying OVS state in real time.</div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-tag">Cloud</div>
+        <div class="proof-title">Drop-IT — Serverless File Sharing</div>
+        <div class="proof-desc">AWS Lambda + S3 + API Gateway, pre-signed URLs for time-limited secure transfer, zero infra to manage.</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Built for Polyinnovae AI × Eonexea AI Hackathon — 14 Aug 2026</span>
+    <span>ankushnrofficial@gmail.com</span>
+  </footer>
+
+</div>
+
+</body>
+</html>
